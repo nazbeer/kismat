@@ -36,6 +36,7 @@ const LandingPage = () => {
                                 <li><a href="#">Livestreams</a></li>
                                 <li><a href="#">Leaderboard</a></li>
                                 <li><a href="#">Games</a></li>
+                                
                             </ul>
                             <div className="nav-button d-sm-none">
                                 <a href="#" className="btn">Download App</a>
