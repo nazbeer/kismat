@@ -33,6 +33,14 @@ body, html {
     font-weight: bold;
 }
 
+.nav-links-container {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
 .nav-links {
     list-style: none;
     padding: 0;
@@ -41,10 +49,29 @@ body, html {
     gap: 20px;
 }
 
+.nav-links.open {
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: #ff208b;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.nav-links li {
+    margin: 10px 0;
+}
+
 .nav-links li a {
     color: white;
     text-decoration: none;
     font-size: 18px;
+}
+
+.nav-button {
+    position: absolute;
+    right: 0;
 }
 
 .nav-button .btn {
@@ -55,6 +82,19 @@ body, html {
     border-radius: 5px;
     text-decoration: none;
     font-size: 18px;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.nav-toggle .hamburger {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
 }
 
 .hero {
@@ -109,13 +149,11 @@ body, html {
 
 .auth-buttons .apple-btn {
     background-color: transparent;
-    
     color: white;
 }
 
 .auth-buttons .google-btn {
     background-color: transparent;
-    width:225px;
     color: white;
 }
 
@@ -130,7 +168,6 @@ body, html {
     text-align: left;
     position: relative;
     overflow: auto;
-    /* background-color: rgba(0, 0, 0, 0.7); */
 }
 
 .trending h2 {
@@ -138,9 +175,9 @@ body, html {
     margin-bottom: 20px;
     color: white;
 }
-.trending .container{
 
-    padding-left:0px !important;
+.trending .container {
+    padding-left: 0px !important;
     margin-left: 0px !important;
 }
 
@@ -155,7 +192,7 @@ body, html {
     background-color: #2c2f33;
     border-radius: 10px;
     overflow: hidden;
-    min-width: 150px; /* Increased width */
+    min-width: 150px;
     text-align: center;
     color: white;
     position: relative;
@@ -277,5 +314,72 @@ body, html {
     }
     100% {
         background-color: #ff208b;
+    }
+}
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+    .d-sm-none{
+        display: none;
+    }
+    .nav-links {
+        display: none;
+    }
+    .nav-links-container{
+        text-align: right;
+        float: right;
+        display: block;
+    }
+    .nav-toggle {
+        display: flex;
+        float: right;
+        text-align: right;
+    }
+
+    .nav-links.open {
+        display: block;
+        float: right;
+        text-align: right;
+        padding-right:20px;
+        z-index: 1000;
+        width: 100%;
+    }
+    .hero{
+        display: block;
+        padding:15px;
+        height: 85vh;
+    }
+    .hero h1 {
+        font-size: 32px !important;
+    }
+
+    .auth-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .auth-buttons .btn {
+        width: 100%;
+    }
+
+    .trending {
+        padding: 20px 0;
+    }
+
+    .trending-items {
+        animation: scrollLeftMobile 20s linear infinite;
+    }
+
+    .trending-item {
+        min-width: 120px;
+    }
+}
+
+@keyframes scrollLeftMobile {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-200%);
     }
 }
