@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import './landing.css';
 import lvideo from '../assets/lvideo.mp4';
 import avatar1 from '../assets/avatar1.jpeg'; // Example avatar images
