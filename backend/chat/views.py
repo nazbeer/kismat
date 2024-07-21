@@ -1,7 +1,7 @@
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 from .models import VideoCall, Message
 from .serializers import VideoCallSerializer, MessageSerializer
-from rest_framework.permissions import IsAuthenticated
 
 class VideoCallListCreateView(generics.ListCreateAPIView):
     queryset = VideoCall.objects.all()

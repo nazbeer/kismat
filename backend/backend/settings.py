@@ -53,6 +53,9 @@ INSTALLED_APPS = [
     'chat',
     'moments',
     'follow',
+    'location',
+    'levels',
+
     # 'likes',
     # 'comments',
 ]
@@ -69,10 +72,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
-GDAL_LIBRARY_PATH = os.getenv('GDAL_LIBRARY_PATH', '/usr/local/lib/libgdal.dylib')
+# GDAL_LIBRARY_PATH = os.getenv('GDAL_LIBRARY_PATH', '/usr/local/lib/libgdal.dylib')
 
-# Set the path to the GEOS library
-GEOS_LIBRARY_PATH = os.getenv('GEOS_LIBRARY_PATH', '/usr/local/lib/libgeos_c.dylib')
+# # Set the path to the GEOS library
+# GEOS_LIBRARY_PATH = os.getenv('GEOS_LIBRARY_PATH', '/usr/local/lib/libgeos_c.dylib')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
