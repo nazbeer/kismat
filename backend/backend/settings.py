@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']  # You can add specific hostnames as needed
 
 # Application definition
+# AUTH_USER_MODEL = 'users.User'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -55,7 +56,6 @@ INSTALLED_APPS = [
     'follow',
     'location',
     'levels',
-
     # 'likes',
     # 'comments',
 ]
@@ -72,10 +72,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
-# GDAL_LIBRARY_PATH = os.getenv('GDAL_LIBRARY_PATH', '/usr/local/lib/libgdal.dylib')
 
-# # Set the path to the GEOS library
-# GEOS_LIBRARY_PATH = os.getenv('GEOS_LIBRARY_PATH', '/usr/local/lib/libgeos_c.dylib')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -153,10 +150,29 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
     'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+    'JTI_CLAIM': 'jti',
+}
+
+swagger_settings = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
 }
 
 # CORS settings
@@ -169,3 +185,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Additional configurations can be added as needed
+# Custom user model
+
