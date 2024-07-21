@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import PartyRoom
 
-# Register your models here.
+@admin.register(PartyRoom)
+class PartyRoomAdmin(admin.ModelAdmin):
+    list_display = ('id',)
+    search_fields = ('id',)
+
