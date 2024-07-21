@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 from datetime import timedelta
 import dj_database_url
@@ -69,7 +69,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
+GDAL_LIBRARY_PATH = os.getenv('GDAL_LIBRARY_PATH', '/usr/local/lib/libgdal.dylib')
 
+# Set the path to the GEOS library
+GEOS_LIBRARY_PATH = os.getenv('GEOS_LIBRARY_PATH', '/usr/local/lib/libgeos_c.dylib')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

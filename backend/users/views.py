@@ -78,3 +78,20 @@ class LoginView(generics.GenericAPIView):
             return Response({'error': 'Invalid credentials.'}, status=status.HTTP_400_BAD_REQUEST)
         except User.DoesNotExist:
             return Response({'error': 'Invalid credentials.'}, status=status.HTTP_400_BAD_REQUEST)
+# users/views.py
+from django.contrib.gis.geos import Point
+from django.contrib.gis.db.models.functions import Distance
+from .models import User
+from .serializers import UserSerializer
+
+class UserLocationSearchView(generics.ListAPIView):
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        queryset = User.objects.all()
+        location = self.request.query_params.get('location', None)
+        if location:
+            lat, lon = map(float, location.split(','))
+            user_location = Point(lon, lat, srid=4326)
+            queryset = queryset.annotate(distance=Distance('location', user_location)).order_by('distance')
+        return queryset
